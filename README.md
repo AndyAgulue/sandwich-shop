@@ -10,10 +10,13 @@
 
 ## Wireframes:
 
+### The main page:
 ![Main Screen Wireframe](assets/Sandwich_Shop_Main.jpg)
 
+### The menu page:
 ![Menu Screen Wireframe](assets/Sandwich_Shop_Menu.jpg)
 
+### The about page:
 ![About Screen Wireframe](assets/Sandwich_Shop_about.jpg)
 
 ## Domain Model:
