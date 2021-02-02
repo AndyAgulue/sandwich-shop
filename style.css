@@ -1,0 +1,74 @@
+* {
+  padding: 0;
+  margin: 0;
+  /* height: 100%; */
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background-color: white;
+  text-decoration: none;
+  list-style: none;
+}
+#navSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
+#logo {
+  float: left;
+  width: 200px;
+  height: auto;
+}
+
+#navItems li {
+  text-decoration: none;
+  list-style: none;
+  flex-direction: row;
+  margin: auto;
+  size: 32px;
+}
+ul li a {
+  text-decoration: none;
+  list-style: none;
+  color: #000;
+}
+
+ul li a:visited {
+  text-decoration: none;
+  list-style: none;
+  color: #000;
+}
+
+#mural {
+  display: grid;
+  height: 100%;
+}
+
+#muralPic {
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+#aboutUs {
+  height: 200px;
+  display: flex;
+  padding: 70px 50px;
+  margin: 0px 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 24px;
+}
+footer {
+  background-color: black;
+  color: white;
+}
+
+#fb {
+ 
+}
