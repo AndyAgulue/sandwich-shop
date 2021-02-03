@@ -2,29 +2,39 @@
 
 // To-Do: Create a form input  for menu items. one for quantity the other for notes/requests
 //        Create object for menu items
+var select = document.getElementById('sandwich');
 
+ var quantity = document.getElementById('quantity');
 function SandwichMenu(name,ingredients, price) {
   this.name = name;
   this.ingredients = ingredients;
   this.price = price;
+  SandwichMenu.allSandwichMenu.push(this);
 }
+SandwichMenu.allSandwichMenu = [];
 
 SandwichMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var ingredients = document.createElement('li');
   var price = document.createElement('li');
-
+  var option = document.createElement('option');
+  
   name.textContent = this.name;
   ingredients.textContent = this.ingredients;
   price.textContent = this.price;
+  option.textContent = this.name;
+  option.value = this.name;
+  
 
   var menu = document.getElementById('sandwiches');
   menu.appendChild(item);
   item.appendChild(name);
   item.appendChild(ingredients);
   item.appendChild(price);
+  select.appendChild(option);
 };
+
 
 // for (var i = 0; i < sandwichNames; i++) {
 //   new SandwichMenu(sandwichNames[i]);
@@ -149,3 +159,139 @@ coffee.display();
 tea.display();
 beer.display();
 wine.display();
+
+// Cart constructor
+// Creating a new cart and adding and removing items from cart
+var Cart = function(items) {
+  this.items = items;
+};
+
+Cart.prototype.addItem = function(name, quantity) {
+  console.log(CartItem);
+  this.items.push(new CartItem(name, quantity));
+};
+
+Cart.prototype.saveToLocalStorage = function() {
+  console.log(this.items);
+  var cartString = JSON.stringify(this.items);
+  localStorage.setItem('cart', cartString);
+  // localStorage.setItem('cart', JSON.stringify(this.price));
+  // localStorage.setItem('cart', JSON.stringify(this.name));
+};
+
+Cart.prototype.removeItem = function(quantity) {
+  this.quantity.splice(this.quantity, 1);
+};
+
+var CartItem = function(name, quantity) {
+  this.name = name;
+  this.quantity = quantity;
+};
+
+var table = document.getElementById('cart');
+table.addEventListener('click', removeItemFromCart);
+var cart;
+
+function loadCart() {
+  var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = new Cart(cartItems);
+}
+
+function renderCart() {
+  //loadCart();
+  clearCart();
+  
+}
+
+function clearCart() {
+  var tableRows = document.querySelectorAll('#cart tbody tr');
+  for (var i = 0; i <= tableRows.length; i++) {
+    if (tableRows[i]) {
+      tableRows[i].remove();
+    }
+  }
+}
+
+function showCart() {
+  var tableBody = document.querySelector('#cart tbody');
+  for (var i in Cart.item) {
+    var cartItemRow = document.createElement('tr');
+    var deleteLink = document.createElement('td');
+      deleteLink.textContent = 'X';
+      deleteLink.classList.add('remover');
+      deleteLink.id = [i];
+    var amountOfItem = document.createElement('td');
+      amountOfItem.textContent = cart.items[i].quantity  
+    var itemPathWay = document.createElement('td');
+    
+    cartItemRow.appendChild(deleteLink);
+    cartItemRow.appendChild(amountOfItem);
+    cartItemRow.appendChild(itemPathWay);
+    tableBody.appendChild(cartItemRow);
+  }
+}
+showCart();
+
+function removeItemFromCart(event){
+  if (event.target.classList.contains('remover')){
+    cart.removeItem(parseInt(event.target.id));
+    cart.saveToLocalStorage();
+    renderCart();
+  }
+}
+renderCart();
+
+var cart = new Cart([]);
+function populateForm() {
+    var selectElement = document.getElementById('sandwich');
+    for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
+      //console.log(i);
+      var elem = document.createElement('option');
+      var option = SandwichMenu.allSandwichMenu[i].name;
+      elem.textContent = option;
+      selectElement.appendChild(elem);
+    }
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  addSelectedItemToCart();
+  cart.saveToLocalStorage();
+  updateCounter();
+  updateCartPreview();
+}
+
+function addSelectedItemToCart() {
+  var itemSelected = select.options[select.selectedIndex].value;
+  var quantitySelected = quantity.value;
+  console.log('testing', itemSelected, quantitySelected);
+  cart.addItem(itemSelected, quantitySelected);
+  console.log(cart);
+  }
+
+
+function updateCounter(){
+  var header = document.getElementById('itemCount');
+  for (var i = 0; i < cart.items.length; i++){
+    if (cartTotal.length === 0){  
+    cartTotal = 0;
+    }
+    else (cartTotal = cartTotal + cart.items[i].quantity);
+  } 
+  header.textcontent = cartTotal.length;
+}
+
+function updateCartPreview() {
+  var sandwich = document.getElementById('sandwhiches');
+  var quantity = document.getElementById('quantity');
+  var price = document.getElementById('price');
+  var cartOutput = document.getElementById('cartContents');
+  var itemElement = document.createElement('div');
+  itemElement.textContent = sandwich + quantity + price;
+  cartOutput.appendChild(itemElement);
+}
+
+var menuForm = document.getElementById('menuItem');
+menuForm.addEventListener('submit', handleSubmit);
+
+populateForm();
