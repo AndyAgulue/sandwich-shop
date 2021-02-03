@@ -15,7 +15,7 @@ function cart() {
 
   var addToCartButtons = document.getElementsByClassName('shop-item-button');
   for (var k = 0; k < addToCartButtons.length; k++) {
-    var addButton = addToCartButtons[i];
+    var addButton = addToCartButtons[k];
     addButton.addEventListener('click', addToCartClicked);
   }
 
