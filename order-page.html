@@ -1,33 +1,59 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Voyager Orcas</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Voyager Sandwiches & Seafood</h1>
+        <!-- <a href="index.html" ><img src="assets/Voyager_Logo.jpg" id="logo"></a> -->
+        <section id="navSection">
+          <ul id="navItems">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="order-page.html">Menu</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>Cart<span id="itemCount"></span></li>
 
-<html lang="en">
-
-<head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-
-  <title>Order Page</title>
-
-</head>
-
-<body>
-  
-  <header>Menu</header>
-
-    <ul>
-      <li>Home</li>
-      <li>Menu</li>
-      <li>About Us</li>
-  </ul>
-
+          </ul>
+        </section>
+      </header>
   <section>
-    <a href="https://placeholder.com"><img src="https://via.placeholder.com/1080x250"></a>
+    <div class="container">
+    <!-- <img id="orderPageMural" src="assets/mural-setting.jpg" alt=""> -->
+  </div>
   </section>
 
   <section id="sandwiches"></section>
-  
+  <section>
+    <form id='menuItem'>
+      <fieldset>
+        <legend>Sandwhiches</legend>
+        <label>
+          <span>Item</span>
+          <select name="" id="sandwich"></select>
+        </label>
+        <label>
+          <span>Quantity</span>
+          <input id="quantity" type="number"/>
+        </label>
+        <label>
+          <span>Price</span>
+          <input id="price" type="number"/>
+        </label>
+        <input type="submit" value="Add to cart"/>
+      </fieldset>
+      </form>
+      <div id="cartContents"></div>
+  </section>
+   
+    
   <section id="salads"></section>
 
   <section id="kids"></section>
@@ -35,6 +61,14 @@
   <section id="drinks"></section>
 
 
+
+<!-- cart info -->
+<input type="button" value="save" onClick="SaveItem()"/>
+<div id="cart-container"></div>
+      <table id="cart"></table>
+      <div id="sandwhich"></div>
+      <div id="quantity"></div>
+      <div id="price"></div>
   <footer>
 
   </footer> 
