@@ -3,19 +3,22 @@
 // To-Do: Create a form input  for menu items. one for quantity the other for notes/requests
 //        Create object for menu items
 var select = document.getElementById('sandwich');
+var quantity = document.getElementById('quantity');
 
- var quantity = document.getElementById('quantity');
-function SandwichMenu(name,ingredients, price) {
+function SandwichMenu(name,ingredients, price, itemType) {
   this.name = name;
   this.ingredients = ingredients;
   this.price = price;
-
+  this.itemType = itemType;
+  SandwichMenu.allSandwichMenu.push(this);
 }
+
 SandwichMenu.allSandwichMenu = [];
 
-var selectedItems = [];
+// Cart.selectedItems = [];
 
 SandwichMenu.prototype.display = function() {
+  var select = document.getElementById('sandwiches');
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var ingredients = document.createElement('li');
@@ -23,12 +26,10 @@ SandwichMenu.prototype.display = function() {
   name.textContent = this.name;
   ingredients.textContent = this.ingredients;
   price.textContent = this.price;
-  option.textContent = this.name;
-  option.value = this.name;
-  
+  Option.textContent = this.name;
+  Option.value = this.name;
 
-  var menu = document.getElementById('sandwiches');
-  menu.appendChild(item);
+  select.appendChild(item);
   item.appendChild(name);
   item.appendChild(ingredients);
   item.appendChild(price);
@@ -40,142 +41,153 @@ SandwichMenu.prototype.display = function() {
 // }
 
 //Sandwiches
-var muffaletta = new SandwichMenu('Mufaletta', 'Mortadella, Salami, Ham, Provolone, Olive Salad', '$14');
-var gruyere = new SandwichMenu('Gruyere & Pear', 'North Beach Oyster Mushrooms, Caramelized Onion, Gruyere, Arugula, Bosc Pear', '$13');
-var bahnmi = new SandwichMenu('Bahn Mi (Pork or Tofu)', 'Cilantro Aioli, Pickled Daikon and Carrot, Cucumber, Chilis, Herbs', '$13');
-var chicken = new SandwichMenu('Fried Chicken', 'Pimento Cheese, Pickles, Cabbage Slaw', '$14');
-var cheeseSteak = new SandwichMenu('Cheesesteak', 'Jack Mountain Steak, Caramelized Onion, Sweet Pepper and Garlic Relish, Mornay Sauce', '$16');
-var pork = new SandwichMenu('Roast Pork Sanguche', 'Aji Amarillo, Cortido, Radish, Crema', '$14');
-var poboy = new SandwichMenu('Fried Prawn Po\'Boy', 'Remoulade, Lettuce, Tomato, Bacon', '$15');
+var muffaletta = new SandwichMenu('Mufaletta', 'Mortadella, Salami, Ham, Provolone, Olive Salad', '$14', 'sandwich');
+var gruyere = new SandwichMenu('Gruyere & Pear', 'North Beach Oyster Mushrooms, Caramelized Onion, Gruyere, Arugula, Bosc Pear', '$13', 'sandwich');
+var banhmi = new SandwichMenu('Banh Mi (Pork or Tofu)', 'Cilantro Aioli, Pickled Daikon and Carrot, Cucumber, Chilis, Herbs', '$13', 'sandwich');
+var chicken = new SandwichMenu('Fried Chicken', 'Pimento Cheese, Pickles, Cabbage Slaw', '$14', 'sandwich');
+var cheeseSteak = new SandwichMenu('Cheesesteak', 'Jack Mountain Steak, Caramelized Onion, Sweet Pepper and Garlic Relish, Mornay Sauce', '$16', 'sandwich');
+var pork = new SandwichMenu('Roast Pork Sanguche', 'Aji Amarillo, Cortido, Radish, Crema', '$14', 'sandwich');
+var poboy = new SandwichMenu('Fried Prawn Po\'Boy', 'Remoulade, Lettuce, Tomato, Bacon', '$15', 'sandwich');
+var mixed = new SandwichMenu('Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', '$4/8', 'salad');
+var caesar = new SandwichMenu('Kale Caesar', 'Anchovy, Parmesan, Lemon, Bread Crumbs', '$6/12', 'salad');
+var bunCha = new SandwichMenu('Bun Cha (Pork or Tofu)', 'Vermicelli Rice Noodles, Pickled Carrot and Daikon, Lettuce, Nuoc Chom, Hoisin Sauce, Peanuts, Herbs', '$14', 'salad');
+var pbj = new SandwichMenu('PB&J','','$6', 'kids');
+var grilledCheese = new SandwichMenu('Grilled Cheese','', '$6', 'kids');
+var hamCheese = new SandwichMenu('Ham & Cheese','', '$6', 'kids');
+var kidsBunCha = new SandwichMenu('Kids Bun Cha','', '$8', 'kids');
+var coke = new SandwichMenu('Mexican Coke','', '$3', 'drink');
+var limonata = new SandwichMenu('Pellegrino Limonata','', '$3', 'drink');
+var aranciata = new SandwichMenu('Pellegrino Aranciata Rossa','', '$3', 'drink');
+var topochico = new SandwichMenu('Topo Chico','', '$3', 'drink');
+var coffee = new SandwichMenu('Local Goods French Press Coffee','', '$3', 'drink');
+var tea = new SandwichMenu('Enchanted Forest Tea','', '$4', 'drink');
+// var beer = new SandwichMenu('Beer & Cider','', '$5', 'drink');
+// var wine = new SandwichMenu('See Store for Details', '', 'varies', 'drink');
+
 
 muffaletta.display();
 gruyere.display();
-bahnmi.display();
+banhmi.display();
 chicken.display();
 cheeseSteak.display();
 pork.display();
 poboy.display();
-
-//Salads
-
-function SaladMenu(name,ingredients, price) {
-  this.name = name;
-  this.ingredients = ingredients;
-  this.price = price;
-}
-
-SaladMenu.prototype.display = function() {
-  var item = document.createElement('ul');
-  var name = document.createElement('li');
-  var ingredients = document.createElement('li');
-  var price = document.createElement('li');
-  var select = selector(this);
-
-
-  name.textContent = this.name;
-  ingredients.textContent = this.ingredients;
-  price.textContent = this.price;
-
-  var menu = document.getElementById('salads');
-  menu.appendChild(item);
-  item.appendChild(name);
-  item.appendChild(ingredients);
-  item.appendChild(price);
-  item.appendChild(select);
-};
-
-var mixed = new SaladMenu('Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', '$4/8');
-var caesar = new SaladMenu('Kale Caesar', 'Anchovy, Parmesan, Lemon, Bread Crumbs', '$6/12');
-var bunCha = new SaladMenu('Bun Cha (Pork or Tofu)', 'Vermicelli Rice Noodles, Pickled Carrot and Daikon, Lettuce, Nuoc Chom, Hoisin Sauce, Peanuts, Herbs', '$14');
-
 mixed.display();
 caesar.display();
 bunCha.display();
-
-//Kids Menu
-
-function KidsMenu(name, price) {
-  this.name = name;
-  this.price = price;
-}
-
-KidsMenu.prototype.display = function() {
-  var item = document.createElement('ul');
-  var name = document.createElement('li');
-  var price = document.createElement('li');
-  var select = selector(this);
-
-  name.textContent = this.name;
-  price.textContent = this.price;
-
-  var menu = document.getElementById('kids');
-  menu.appendChild(item);
-  item.appendChild(name);
-  item.appendChild(price);
-  item.appendChild(select);
-};
-
-var pbj = new KidsMenu('PB&J', '$6');
-var grilledCheese = new KidsMenu('Grilled Cheese', '$6');
-var hamCheese = new KidsMenu('Ham & Cheese', '$6');
-var kidsBunCha = new KidsMenu('Kids Bun Cha', '$8');
-
 pbj.display();
 grilledCheese.display();
 hamCheese.display();
 kidsBunCha.display();
-
-function DrinksMenu(name, price) {
-  this.name = name;
-  this.price = price;
-}
-
-//Drinks
-
-DrinksMenu.prototype.display = function() {
-  var item = document.createElement('ul');
-  var name = document.createElement('li');
-  var price = document.createElement('li');
-  var select = selector(this);
-
-  name.textContent = this.name;
-  price.textContent = this.price;
-
-  var menu = document.getElementById('drinks');
-  menu.appendChild(item);
-  item.appendChild(name);
-  item.appendChild(price);
-  item.appendChild(select);
-};
-
-var coke = new DrinksMenu('Mexican Coke', '$3');
-var limonata = new DrinksMenu('Pellegrino Limonata', '$3');
-var aranciata = new DrinksMenu('Pellegrino Aranciata Rossa', '$3');
-var topochico = new DrinksMenu('Topo Chico', '$3');
-var coffee = new DrinksMenu('Local Goods French Press Coffee', '$3');
-var tea = new DrinksMenu('Enchanted Forest Tea', '$4');
-var beer = new DrinksMenu('Beer & Cider', '$5');
-var wine = new DrinksMenu('See Store for Details');
-
 coke.display();
 limonata.display();
 aranciata.display();
 topochico.display();
 coffee.display();
 tea.display();
-beer.display();
-wine.display();
+// beer.display();
+// wine.display();
+
+
+//Salads
+
+// function SaladMenu(name,ingredients, price) {
+//   this.name = name;
+//   this.ingredients = ingredients;
+//   this.price = price;
+// }
+
+// SaladMenu.prototype.display = function() {
+//   var item = document.createElement('ul');
+//   var name = document.createElement('li');
+//   var ingredients = document.createElement('li');
+//   var price = document.createElement('li');
+//   var select = selector(this);
+
+
+//   name.textContent = this.name;
+//   ingredients.textContent = this.ingredients;
+//   price.textContent = this.price;
+
+//   var menu = document.getElementById('salads');
+//   menu.appendChild(item);
+//   item.appendChild(name);
+//   item.appendChild(ingredients);
+//   item.appendChild(price);
+//   item.appendChild(select);
+// };
+
+
+
+
+
+// //Kids Menu
+
+// function KidsMenu(name, price) {
+//   this.name = name;
+//   this.price = price;
+// }
+
+// KidsMenu.prototype.display = function() {
+//   var item = document.createElement('ul');
+//   var name = document.createElement('li');
+//   var price = document.createElement('li');
+//   var select = selector(this);
+
+//   name.textContent = this.name;
+//   price.textContent = this.price;
+
+//   var menu = document.getElementById('kids');
+//   menu.appendChild(item);
+//   item.appendChild(name);
+//   item.appendChild(price);
+//   item.appendChild(select);
+// };
+
+
+
+
+
+// function DrinksMenu(name, price) {
+//   this.name = name;
+//   this.price = price;
+// }
+
+// //Drinks
+
+// DrinksMenu.prototype.display = function() {
+//   var item = document.createElement('ul');
+//   var name = document.createElement('li');
+//   var price = document.createElement('li');
+//   var select = selector(this);
+
+//   name.textContent = this.name;
+//   price.textContent = this.price;
+
+//   var menu = document.getElementById('drinks');
+//   menu.appendChild(item);
+//   item.appendChild(name);
+//   item.appendChild(price);
+//   item.appendChild(select);
+// };
+
+
+
+
 
 
 // Cart constructor
 // Creating a new cart and adding and removing items from cart
 var Cart = function(items) {
   this.items = items;
+  // Cart.selectedItems.push(this);
 };
 
 Cart.prototype.addItem = function(name, quantity) {
-  console.log(CartItem);
-  this.items.push(new CartItem(name, quantity));
+  var cartItem = new CartItem(name,quantity, price);
+  console.log(cartItem);
+  this.items.push(cartItem);
+
 };
 
 Cart.prototype.saveToLocalStorage = function() {
@@ -186,79 +198,85 @@ Cart.prototype.saveToLocalStorage = function() {
   // localStorage.setItem('cart', JSON.stringify(this.name));
 };
 
-Cart.prototype.removeItem = function(quantity) {
+Cart.prototype.removeItem = function() {
   this.quantity.splice(this.quantity, 1);
 };
 
-var CartItem = function(name, quantity) {
+var CartItem = function(name, quantity, price) {
   this.name = name;
   this.quantity = quantity;
+  this.price = price;
 };
 
-var table = document.getElementById('cart');
-table.addEventListener('click', removeItemFromCart);
-var cart;
 
-function loadCart() {
-  var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-  cart = new Cart(cartItems);
-}
+// var table = document.getElementById('cart');
+// table.addEventListener('click', removeItemFromCart);
+// var cart;
 
-function renderCart() {
-  //loadCart();
-  clearCart();
-  
-}
+// function loadCart() {
+//   var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+//   cart = new Cart(cartItems);
+// }
 
-function clearCart() {
-  var tableRows = document.querySelectorAll('#cart tbody tr');
-  for (var i = 0; i <= tableRows.length; i++) {
-    if (tableRows[i]) {
-      tableRows[i].remove();
-    }
-  }
-}
+// function renderCart() {
+//   loadCart();
+//   clearCart();
 
-function showCart() {
-  var tableBody = document.querySelector('#cart tbody');
-  for (var i in Cart.item) {
-    var cartItemRow = document.createElement('tr');
-    var deleteLink = document.createElement('td');
-      deleteLink.textContent = 'X';
-      deleteLink.classList.add('remover');
-      deleteLink.id = [i];
-    var amountOfItem = document.createElement('td');
-      amountOfItem.textContent = cart.items[i].quantity  
-    var itemPathWay = document.createElement('td');
-    
-    cartItemRow.appendChild(deleteLink);
-    cartItemRow.appendChild(amountOfItem);
-    cartItemRow.appendChild(itemPathWay);
-    tableBody.appendChild(cartItemRow);
-  }
-}
-showCart();
+// // }
 
-function removeItemFromCart(event){
-  if (event.target.classList.contains('remover')){
-    cart.removeItem(parseInt(event.target.id));
-    cart.saveToLocalStorage();
-    renderCart();
-  }
-}
-renderCart();
+// function clearCart() {
+//   var tableRows = document.querySelectorAll('#cart tbody tr');
+//   for (var i = 0; i <= tableRows.length; i++) {
+//     if (tableRows[i]) {
+//       tableRows[i].remove();
+//     }
+//   }
+// }
 
-var cart = new Cart([]);
+// function showCart() {
+//   var tableBody = document.querySelector('#cart tbody');
+//   for (var i in Cart.item) {
+//     var cartItemRow = document.createElement('tr');
+//     var deleteLink = document.createElement('td');
+//     deleteLink.textContent = 'X';
+//     deleteLink.classList.add('remover');
+//     deleteLink.id = [i];
+//     var amountOfItem = document.createElement('td');
+//     amountOfItem.textContent = cart.items[i].quantity;
+//     var itemPathWay = document.createElement('td');
+
+//     cartItemRow.appendChild(deleteLink);
+//     cartItemRow.appendChild(amountOfItem);
+//     cartItemRow.appendChild(itemPathWay);
+//     tableBody.appendChild(cartItemRow);
+//   }
+// }
+// showCart();
+
+// function removeItemFromCart(event){
+//   if (event.target.classList.contains('remover')){
+//     cart.removeItem(parseInt(event.target.id));
+//     cart.saveToLocalStorage();
+//     renderCart();
+//   }
+// }
+// renderCart();
+
+// var cart = new Cart([]);
+var selectElement = document.getElementById('sandwich');
+
 function populateForm() {
-    var selectElement = document.getElementById('sandwich');
-    for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
-      //console.log(i);
-      var elem = document.createElement('option');
-      var option = SandwichMenu.allSandwichMenu[i].name;
-      elem.textContent = option;
-      selectElement.appendChild(elem);
-    }
+  
+  for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
+  //console.log(i);
+    var elem = document.createElement('option');
+    var option = SandwichMenu.allSandwichMenu[i].name;
+    elem.textContent = option;
+    selectElement.appendChild(elem);
+  }
 }
+
+populateForm();
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -269,36 +287,37 @@ function handleSubmit(event) {
 }
 
 function addSelectedItemToCart() {
+  // var submit =document.getElementById('submitButton');
   var itemSelected = select.options[select.selectedIndex].value;
   var quantitySelected = quantity.value;
   console.log('testing', itemSelected, quantitySelected);
   cart.addItem(itemSelected, quantitySelected);
   console.log(cart);
-  }
-
-
-function updateCounter(){
-  var header = document.getElementById('itemCount');
-  for (var i = 0; i < cart.items.length; i++){
-    if (cartTotal.length === 0){  
-    cartTotal = 0;
-    }
-    else (cartTotal = cartTotal + cart.items[i].quantity);
-  } 
-  header.textcontent = cartTotal.length;
 }
 
-function updateCartPreview() {
-  var sandwich = document.getElementById('sandwhiches');
-  var quantity = document.getElementById('quantity');
-  var price = document.getElementById('price');
-  var cartOutput = document.getElementById('cartContents');
-  var itemElement = document.createElement('div');
-  itemElement.textContent = sandwich + quantity + price;
-  cartOutput.appendChild(itemElement);
-}
+
+// function updateCounter(){
+//   var header = document.getElementById('itemCount');
+//   for (var i = 0; i < cart.items.length; i++){
+//     if (cartTotal.length === 0){
+//     cartTotal = 0;
+//     }
+//     else (cartTotal = cartTotal + cart.items[i].quantity);
+//   }
+//   header.textcontent = cartTotal.length;
+// }
+
+// function updateCartPreview() {
+//   var sandwich = document.getElementById('sandwhiches');
+//   var quantity = document.getElementById('quantity');
+//   var price = document.getElementById('price');
+//   var cartOutput = document.getElementById('cartContents');
+//   var itemElement = document.createElement('div');
+//   itemElement.textContent = sandwich + quantity + price;
+//   cartOutput.appendChild(itemElement);
+// }
 
 var menuForm = document.getElementById('menuItem');
 menuForm.addEventListener('submit', handleSubmit);
 
-populateForm();
+// populateForm();

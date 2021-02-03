@@ -53,6 +53,7 @@ function addToCartClicked(event) {
   var title = shopItem.getElementsByClassName('menu-item-title')[0].innerText;
   var price = shopItem.getElementsByClassName('menu-item-price')[0].innerText;
   addItemToCart(title, price);
+
   updateCartTotal();
 }
 
@@ -80,6 +81,9 @@ function addItemToCart(title, price) {
   cartItems.append(cartRow);
   cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
   cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
+  console.log(title, price);
+  return(title, price);
+
 }
 
 function updateCartTotal() {
@@ -96,4 +100,27 @@ function updateCartTotal() {
   }
   total = Math.round(total * 100) / 100;
   document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
+  console.log(total);
 }
+// console.log(updateCartTotal.value);
+var CheckoutItems = function(title, price) {
+  this.title = title;
+  this.price = price;
+};
+
+// console.log(CheckoutItems.title);
+
+CheckoutItems.prototype.addItem = function(title, price) {
+  // console.log(CartItem);
+  var cartItem = new CheckoutItems(title, price);
+  this.items.push(cartItem);
+};
+
+
+// Cart.prototype.saveToLocalStorage = function() {
+//   console.log(this.items);
+//   var cartString = JSON.stringify(this.items);
+//   localStorage.setItem('cart', cartString);
+//   // localStorage.setItem('cart', JSON.stringify(this.price));
+//   // localStorage.setItem('cart', JSON.stringify(this.name));
+// };
