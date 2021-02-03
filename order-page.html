@@ -20,6 +20,7 @@
       <li>Home</li>
       <li>Menu</li>
       <li>About Us</li>
+      <li>Cart<span id="itemCount"></span></li>
   </ul>
 
   <section>
@@ -27,7 +28,29 @@
   </section>
 
   <section id="sandwiches"></section>
-  
+  <section>
+    <form id='menuItem'>
+      <fieldset>
+        <legend>Sandwhiches</legend>
+        <label>
+          <span>Item</span>
+          <select name="" id="sandwich"></select>
+        </label>
+        <label>
+          <span>Quantity</span>
+          <input id="quantity" type="number"/>
+        </label>
+        <label>
+          <span>Price</span>
+          <input id="price" type="number"/>
+        </label>
+        <input type="submit" value="Add to cart"/>
+      </fieldset>
+      </form>
+      <div id="cartContents"></div>
+  </section>
+   
+    
   <section id="salads"></section>
 
   <section id="kids"></section>
@@ -35,6 +58,14 @@
   <section id="drinks"></section>
 
 
+
+<!-- cart info -->
+<input type="button" value="save" onClick="SaveItem()"/>
+<div id="cart-container"></div>
+      <table id="cart"></table>
+      <div id="sandwhich"></div>
+      <div id="quantity"></div>
+      <div id="price"></div>
   <footer>
 
   </footer> 
