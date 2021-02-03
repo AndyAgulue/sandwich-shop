@@ -184,7 +184,7 @@ var Cart = function(items) {
 };
 
 Cart.prototype.addItem = function(name, quantity) {
-  var cartItem = new CartItem(name,quantity, price);
+  var cartItem = new CartItem(name,quantity);
   console.log(cartItem);
   this.items.push(cartItem);
 
@@ -211,62 +211,61 @@ var CartItem = function(name, quantity, price) {
 
 // var table = document.getElementById('cart');
 // table.addEventListener('click', removeItemFromCart);
-// var cart;
+var cart;
 
-// function loadCart() {
-//   var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-//   cart = new Cart(cartItems);
-// }
+function loadCart() {
+  var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  cart = new Cart(cartItems);
+}
 
-// function renderCart() {
-//   loadCart();
-//   clearCart();
+function renderCart() {
+  loadCart();
+  clearCart();
+}
 
-// // }
 
-// function clearCart() {
-//   var tableRows = document.querySelectorAll('#cart tbody tr');
-//   for (var i = 0; i <= tableRows.length; i++) {
-//     if (tableRows[i]) {
-//       tableRows[i].remove();
-//     }
-//   }
-// }
+function clearCart() {
+  var tableRows = document.querySelectorAll('#cart tbody tr');
+  for (var i = 0; i <= tableRows.length; i++) {
+    if (tableRows[i]) {
+      tableRows[i].remove();
+    }
+  }
+}
 
-// function showCart() {
-//   var tableBody = document.querySelector('#cart tbody');
-//   for (var i in Cart.item) {
-//     var cartItemRow = document.createElement('tr');
-//     var deleteLink = document.createElement('td');
-//     deleteLink.textContent = 'X';
-//     deleteLink.classList.add('remover');
-//     deleteLink.id = [i];
-//     var amountOfItem = document.createElement('td');
-//     amountOfItem.textContent = cart.items[i].quantity;
-//     var itemPathWay = document.createElement('td');
+function showCart() {
+  var tableBody = document.querySelector('#cart tbody');
+  for (var i in Cart.item) {
+    var cartItemRow = document.createElement('tr');
+    var deleteLink = document.createElement('td');
+    deleteLink.textContent = 'X';
+    deleteLink.classList.add('remover');
+    deleteLink.id = [i];
+    var amountOfItem = document.createElement('td');
+    amountOfItem.textContent = cart.items[i].quantity;
+    var itemPathWay = document.createElement('td');
 
-//     cartItemRow.appendChild(deleteLink);
-//     cartItemRow.appendChild(amountOfItem);
-//     cartItemRow.appendChild(itemPathWay);
-//     tableBody.appendChild(cartItemRow);
-//   }
-// }
-// showCart();
+    cartItemRow.appendChild(deleteLink);
+    cartItemRow.appendChild(amountOfItem);
+    cartItemRow.appendChild(itemPathWay);
+    tableBody.appendChild(cartItemRow);
+  }
+}
+showCart();
 
-// function removeItemFromCart(event){
-//   if (event.target.classList.contains('remover')){
-//     cart.removeItem(parseInt(event.target.id));
-//     cart.saveToLocalStorage();
-//     renderCart();
-//   }
-// }
-// renderCart();
+function removeItemFromCart(event){
+  if (event.target.classList.contains('remover')){
+    cart.removeItem(parseInt(event.target.id));
+    cart.saveToLocalStorage();
+    renderCart();
+  }
+}
+renderCart();
 
-// var cart = new Cart([]);
+var cart = new Cart([]);
 var selectElement = document.getElementById('sandwich');
 
 function populateForm() {
-  
   for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
   //console.log(i);
     var elem = document.createElement('option');
@@ -287,7 +286,6 @@ function handleSubmit(event) {
 }
 
 function addSelectedItemToCart() {
-  // var submit =document.getElementById('submitButton');
   var itemSelected = select.options[select.selectedIndex].value;
   var quantitySelected = quantity.value;
   console.log('testing', itemSelected, quantitySelected);
@@ -296,28 +294,28 @@ function addSelectedItemToCart() {
 }
 
 
-// function updateCounter(){
-//   var header = document.getElementById('itemCount');
-//   for (var i = 0; i < cart.items.length; i++){
-//     if (cartTotal.length === 0){
-//     cartTotal = 0;
-//     }
-//     else (cartTotal = cartTotal + cart.items[i].quantity);
-//   }
-//   header.textcontent = cartTotal.length;
-// }
+function updateCounter(){
+  var cartCount = document.getElementById('itemCount');
+  var cartTotal = 0;
+  for (var i=0; i < cart.items.length; i++) {
+    var cartQuant = parseInt(cart.items[i].quantity);
+    cartTotal += cartQuant;
+    console.log(cartTotal);
+  }
+  cartCount.textContent = ` ${cartTotal}`;
+}
 
-// function updateCartPreview() {
-//   var sandwich = document.getElementById('sandwhiches');
-//   var quantity = document.getElementById('quantity');
-//   var price = document.getElementById('price');
-//   var cartOutput = document.getElementById('cartContents');
-//   var itemElement = document.createElement('div');
-//   itemElement.textContent = sandwich + quantity + price;
-//   cartOutput.appendChild(itemElement);
-// }
+function updateCartPreview() {
+  var sandwich = document.getElementById('sandwiches');
+  var quantity = document.getElementById('quantity');
+  var price = document.getElementById('price');
+  var cartOutput = document.getElementById('cartContents');
+  var itemElement = document.createElement('div');
+  itemElement.textContent = sandwich + quantity + price;
+  cartOutput.appendChild(itemElement);
+}
 
 var menuForm = document.getElementById('menuItem');
 menuForm.addEventListener('submit', handleSubmit);
 
-// populateForm();
+
