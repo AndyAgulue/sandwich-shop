@@ -7,13 +7,17 @@ function SandwichMenu(name,ingredients, price) {
   this.name = name;
   this.ingredients = ingredients;
   this.price = price;
+  // this.selected = [];
 }
+
+var selectedItems = [];
 
 SandwichMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var ingredients = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
 
   name.textContent = this.name;
   ingredients.textContent = this.ingredients;
@@ -24,6 +28,7 @@ SandwichMenu.prototype.display = function() {
   item.appendChild(name);
   item.appendChild(ingredients);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 // for (var i = 0; i < sandwichNames; i++) {
@@ -60,6 +65,8 @@ SaladMenu.prototype.display = function() {
   var name = document.createElement('li');
   var ingredients = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
+
 
   name.textContent = this.name;
   ingredients.textContent = this.ingredients;
@@ -70,6 +77,7 @@ SaladMenu.prototype.display = function() {
   item.appendChild(name);
   item.appendChild(ingredients);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 var mixed = new SaladMenu('Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', '$4/8');
@@ -91,6 +99,7 @@ KidsMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
 
   name.textContent = this.name;
   price.textContent = this.price;
@@ -99,6 +108,7 @@ KidsMenu.prototype.display = function() {
   menu.appendChild(item);
   item.appendChild(name);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 var pbj = new KidsMenu('PB&J', '$6');
@@ -122,14 +132,16 @@ DrinksMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
 
   name.textContent = this.name;
   price.textContent = this.price;
 
-  var menu = document.getElementById('kids');
+  var menu = document.getElementById('drinks');
   menu.appendChild(item);
   item.appendChild(name);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 var coke = new DrinksMenu('Mexican Coke', '$3');
@@ -149,3 +161,61 @@ coffee.display();
 tea.display();
 beer.display();
 wine.display();
+
+
+function selector(obj){
+  console.log(obj);
+  var SelectNone = document.createElement('option');
+  var selectOne = document.createElement('option');
+  var selectTwo = document.createElement('option');
+  var selectThree = document.createElement('option');
+
+  SelectNone.textContent = 'None';
+  selectOne.textContent = 'One';
+  selectTwo.textContent = 'Two';
+  selectThree.textContent = 'Three';
+
+  selectOne.value = `${1 * obj.price}`;
+  selectTwo.value = '2';
+  selectThree.value = '3';
+
+  var select = document.createElement('select');
+  select.appendChild(SelectNone);
+  select.appendChild(selectOne);
+  select.appendChild(selectTwo);
+  select.appendChild(selectThree);
+
+  return select;
+}
+
+// function getTotal() {
+//   var price = parseInt(this.price);
+//   var count = Option.value;
+
+//   var total = '$' + (price * count);
+//   console.log(total);
+// }
+
+function doShowAll() {
+  var key = '';
+  var list = '<tr><th>Item</th><th>Value</th></tr>\n';
+  var i = 0;
+  for (i = 0; i <= localStorage.length-1; i++) {
+    key = localStorage.key(i);
+    list += '<tr><td>' + key + '</td>\n<td>'
+    + localStorage.getItem(key) + '</td></tr>\n';
+  }
+  if (list == '<tr><th>Item</th><th>Value</th></tr>\n') {
+    list += '<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>\n';
+  }
+  document.getElementById('list').innerHTML = list;
+}
+
+function SaveItem() {
+
+  var name = document.forms.ShoppingList.name.value;
+  var data = document.forms.ShoppingList.data.value;
+  localStorage.setItem(name, data);
+  doShowAll();
+
+}
