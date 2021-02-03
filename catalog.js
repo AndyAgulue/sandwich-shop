@@ -9,17 +9,17 @@ function SandwichMenu(name,ingredients, price) {
   this.name = name;
   this.ingredients = ingredients;
   this.price = price;
-  SandwichMenu.allSandwichMenu.push(this);
+
 }
 SandwichMenu.allSandwichMenu = [];
+
+var selectedItems = [];
 
 SandwichMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var ingredients = document.createElement('li');
   var price = document.createElement('li');
-  var option = document.createElement('option');
-  
   name.textContent = this.name;
   ingredients.textContent = this.ingredients;
   price.textContent = this.price;
@@ -32,7 +32,6 @@ SandwichMenu.prototype.display = function() {
   item.appendChild(name);
   item.appendChild(ingredients);
   item.appendChild(price);
-  select.appendChild(option);
 };
 
 
@@ -70,6 +69,8 @@ SaladMenu.prototype.display = function() {
   var name = document.createElement('li');
   var ingredients = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
+
 
   name.textContent = this.name;
   ingredients.textContent = this.ingredients;
@@ -80,6 +81,7 @@ SaladMenu.prototype.display = function() {
   item.appendChild(name);
   item.appendChild(ingredients);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 var mixed = new SaladMenu('Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', '$4/8');
@@ -101,6 +103,7 @@ KidsMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
 
   name.textContent = this.name;
   price.textContent = this.price;
@@ -109,6 +112,7 @@ KidsMenu.prototype.display = function() {
   menu.appendChild(item);
   item.appendChild(name);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 var pbj = new KidsMenu('PB&J', '$6');
@@ -132,14 +136,16 @@ DrinksMenu.prototype.display = function() {
   var item = document.createElement('ul');
   var name = document.createElement('li');
   var price = document.createElement('li');
+  var select = selector(this);
 
   name.textContent = this.name;
   price.textContent = this.price;
 
-  var menu = document.getElementById('kids');
+  var menu = document.getElementById('drinks');
   menu.appendChild(item);
   item.appendChild(name);
   item.appendChild(price);
+  item.appendChild(select);
 };
 
 var coke = new DrinksMenu('Mexican Coke', '$3');
@@ -159,6 +165,7 @@ coffee.display();
 tea.display();
 beer.display();
 wine.display();
+
 
 // Cart constructor
 // Creating a new cart and adding and removing items from cart
