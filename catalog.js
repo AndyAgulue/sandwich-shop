@@ -160,96 +160,6 @@ aranciata.display();
 topochico.display();
 coffee.display();
 tea.display();
-// beer.display();
-// wine.display();
-
-
-//Salads
-
-// function SaladMenu(name,ingredients, price) {
-//   this.name = name;
-//   this.ingredients = ingredients;
-//   this.price = price;
-// }
-
-// SaladMenu.prototype.display = function() {
-//   var item = document.createElement('ul');
-//   var name = document.createElement('li');
-//   var ingredients = document.createElement('li');
-//   var price = document.createElement('li');
-//   var select = selector(this);
-
-
-//   name.textContent = this.name;
-//   ingredients.textContent = this.ingredients;
-//   price.textContent = this.price;
-
-//   var menu = document.getElementById('salads');
-//   menu.appendChild(item);
-//   item.appendChild(name);
-//   item.appendChild(ingredients);
-//   item.appendChild(price);
-//   item.appendChild(select);
-// };
-
-
-
-
-
-// //Kids Menu
-
-// function KidsMenu(name, price) {
-//   this.name = name;
-//   this.price = price;
-// }
-
-// KidsMenu.prototype.display = function() {
-//   var item = document.createElement('ul');
-//   var name = document.createElement('li');
-//   var price = document.createElement('li');
-//   var select = selector(this);
-
-//   name.textContent = this.name;
-//   price.textContent = this.price;
-
-//   var menu = document.getElementById('kids');
-//   menu.appendChild(item);
-//   item.appendChild(name);
-//   item.appendChild(price);
-//   item.appendChild(select);
-// };
-
-
-
-
-
-// function DrinksMenu(name, price) {
-//   this.name = name;
-//   this.price = price;
-// }
-
-// //Drinks
-
-// DrinksMenu.prototype.display = function() {
-//   var item = document.createElement('ul');
-//   var name = document.createElement('li');
-//   var price = document.createElement('li');
-//   var select = selector(this);
-
-//   name.textContent = this.name;
-//   price.textContent = this.price;
-
-//   var menu = document.getElementById('drinks');
-//   menu.appendChild(item);
-//   item.appendChild(name);
-//   item.appendChild(price);
-//   item.appendChild(select);
-// };
-
-
-
-
-
 
 // Cart constructor
 // Creating a new cart and adding and removing items from cart
@@ -313,7 +223,7 @@ function clearCart() {
 function showCart() {
   var tableBody = document.querySelector('#cart tbody');
   for (var i in Cart.item) {
-    var cartItemRow = document.createElement('tr');
+    var cartheaderRow = document.createElement('tr');
     var deleteLink = document.createElement('td');
     deleteLink.textContent = 'X';
     deleteLink.classList.add('remover');
@@ -322,10 +232,10 @@ function showCart() {
     amountOfItem.textContent = cart.items[i].quantity;
     var itemPathWay = document.createElement('td');
 
-    cartItemRow.appendChild(deleteLink);
-    cartItemRow.appendChild(amountOfItem);
-    cartItemRow.appendChild(itemPathWay);
-    tableBody.appendChild(cartItemRow);
+    cartheaderRow.appendChild(deleteLink);
+    cartheaderRow.appendChild(amountOfItem);
+    cartheaderRow.appendChild(itemPathWay);
+    tableBody.appendChild(cartheaderRow);
   }
 }
 showCart();
@@ -393,11 +303,45 @@ function updateCounter(){
 
 function updateCartPreview(price, itemSelected, quantitySelected) {
   var cartOutput = document.getElementById('cartContents');
-  var itemElement = document.createElement('div');
+  var cartTotal = document.getElementById('cartTotal');
+  // var itemElement = document.createElement('table');
+  // var headerRow = document.createElement('tr');
+  // var itemHeader = document.createElement('th');
+  // var quantityHeader = document.createElement('th');
+  // var priceHeader = document.createElement('th');
+
+  // itemHeader.textContent= 'Item';
+  // quantityHeader.textContent= 'Quantity';
+  // priceHeader.textContent= 'Total';
+  // itemElement.appendChild(headerRow);
+  // headerRow.appendChild(itemHeader);
+  // headerRow.appendChild(quantityHeader);
+  // headerRow.appendChild(priceHeader);
+  
   var totalPrice = (price * quantitySelected);
-  for (var i = 0; i < CartItem.length; i++)
-    itemElement.textContent = `${quantitySelected} ${itemSelected} $${totalPrice}`;
-  cartOutput.appendChild(itemElement);
+  var itemRow = document.createElement('tr');
+  // itemElement.appendChild(itemRow);
+  var itemName = document.createElement('td');
+  var itemQuantity = document.createElement('td');
+  var itemPrice = document.createElement('td');
+  var grandTotal = document.createElement('tr');
+  itemName.textContent = `${itemSelected}`;
+  itemQuantity.textContent =`${quantitySelected}`;
+  itemPrice.textContent =`$${totalPrice}`;
+  // grandTotal.textContent=
+  itemRow.appendChild(itemName);
+  itemRow.appendChild(itemQuantity);
+  itemRow.appendChild(itemPrice);
+  cartTotal.appendChild(grandTotal);
+
+  cartOutput.appendChild(itemRow);
+  var grandCartTotal = 0;
+  for (var i = 0; i < CartItem.length; i++) {
+    grandCartTotal += (totalPrice[i]);
+  // itemElement.textContent = `${quantitySelected} ${itemSelected} $${totalPrice}`;
+  // cartOutput.appendChild(itemElement);
+  }
+  grandTotal.textContent = grandCartTotal;
 }
 
 var menuForm = document.getElementById('menuItem');
