@@ -17,12 +17,18 @@ header {
   background-image: linear-gradient(#b3ccce, rgb(245,245,245));
   color: #1b2e4e;
   z-index: 10;
-
+}
+#itemCount {
+  height: 50px;
+  float:right;
+  /* padding-left: 120px; */
+  padding-right: 50px;
 }
 #navSection {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding-left: 90px;
   
 }
 #logo {
@@ -128,6 +134,7 @@ div.container {
   display: inline-block;
   position: relative;
   background:url('assets/mural-setting.jpg');
+  /* Come back to this as a stretch goal */
   background-position: center;
   height: 400px;
   width: 100%;
@@ -139,18 +146,26 @@ div.container {
 }
 
 #sandwiches {
-  justify-content: center;
+  /* justify-content: center; */
   display: flex;
   flex-direction: column;
   text-align: center;
   height: fit-content;
   font-family: 'Raleway', sans-serif;
   font-size: large;
-  padding-top: 10px;
+  padding-top: 10px; 
+  background-image: url(assets/Voyager_Logo.jpg);
+  background-position: center;
+  background-size:contain;
+  /* background-repeat: no-repeat; */
+  
   
 }
+#sandwiches::first-line{
+  font-family: 'Oleo Script', cursive;
+}
 #salads {
-  justify-content: center;
+  /* justify-content: center; */
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -158,9 +173,20 @@ div.container {
   font-family: 'Raleway', sans-serif;
   font-size: large;
   padding-top: 40px;
+  margin-bottom: 25px;
+}
+#drinks {
+  /* justify-content: center; */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* height: fit-content; */
+  font-family: 'Raleway', sans-serif;
+  font-size: large;
+  padding-top: 40px;
 }
 #kids {
-  justify-content: center;
+  /* justify-content: center; */
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -187,4 +213,14 @@ footer ul li {
 }
 #emailLink:hover {
   color: antiquewhite;
+}
+
+h3 {
+  font-family: 'Oleo Script', cursive;
+  font-size: large;
+  font-weight: bold;
+}
+
+section ul {
+  margin-top: 25px;
 }
