@@ -15,12 +15,13 @@
       <div>
         <h1>Voyager Sandwiches & Seafood</h1>
         <!-- <a href="index.html" ><img src="assets/Voyager_Logo.jpg" id="logo"></a> -->
-        <img id="itemCount" src="assets/shopping-cart.png" >
+        <a href="#cartContents"><img id="itemCount" src="assets/shopping-cart.png"></a>
         <section id="navSection">
           <ul id="navItems">
             <li><a href="index.html">Home</a></li>
             <li><a href="order-page.html">Menu</a></li>
             <li><a href="about.html">About</a></li>
+            <li><a href="media.html">Media</a></li>
           </ul>
         </section>
       </header>
@@ -32,7 +33,7 @@
   <!-- <select id="select">
   </select> -->
 
-  <section id="sandwiches"></section>
+  <!-- <section id="sandwiches"></section> -->
 
   <div id="menu">
       <section id="sandwiches"><h3>Sandwiches</h3></section>
@@ -51,7 +52,7 @@
         </label>
         <label>
           <span>Quantity</span>
-          <input id="quantity" type="number"/>
+          <input id="quantity" type="number" min="0"/>
         </label>
         <label>
           <!-- <span>Price</span>
@@ -60,7 +61,19 @@
         <input id="submitButton" type="submit" value="Add to cart"/>
       </fieldset>
       </form>
-      <div id="cartContents"></div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody id="cartContents"></tbody>
+          <tfoot id="cartTotal"></tfoot>
+        </table>
+      </div>
   </section>
    
     

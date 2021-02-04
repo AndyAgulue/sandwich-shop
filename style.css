@@ -144,6 +144,14 @@ div.container {
     -webkit-clip-path: inset(30px 10px 30px 10px);
     clip-path: inset(30px 10px 30px 10px);
 }
+#menu {
+  background-image: url(assets/Voyager_Logo.jpg);
+  background-position: center;
+  background-size:contain;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  margin-bottom: 50px;
+}
 
 #sandwiches {
   /* justify-content: center; */
@@ -154,10 +162,6 @@ div.container {
   font-family: 'Raleway', sans-serif;
   font-size: large;
   padding-top: 10px; 
-  background-image: url(assets/Voyager_Logo.jpg);
-  background-position: center;
-  background-size:contain;
-  /* background-repeat: no-repeat; */
   
   
 }
@@ -217,10 +221,27 @@ footer ul li {
 
 h3 {
   font-family: 'Oleo Script', cursive;
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
 }
 
 section ul {
   margin-top: 25px;
+}
+
+#menuItem{
+  text-align: center;
+  padding-bottom: 25px;
+}
+legend {
+  font-family: 'Oleo Script', cursive;
+  font-size: x-large;
+  font-weight: bold;
+  padding-bottom: 25px;
+}
+#cartContents {
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: large;
+  line-height: 1.4em;
 }
