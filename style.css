@@ -6,6 +6,11 @@
   /* height: 100%; */
 }
 
+#headerStuff {
+  display: flex;
+  justify-content: space-between;
+}
+
 header {
   position: fixed;
   top: 0px;
@@ -22,14 +27,14 @@ header {
   height: 50px;
   float:right;
   /* padding-left: 120px; */
-  padding-right: 50px;
+  padding-right: 10px;
 }
 #navSection {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-left: 250px;
-  
+  /* padding-left: 250px; */
+  margin-left: 725px;
 }
 #logo {
   position: relative;
@@ -266,24 +271,23 @@ legend {
 .theTeam {
   padding: 50px;
 }
-#cartCounter p {
-  float: right;
+#cartCounter {
+  margin-right: 25px;
+  display: flex;
+  justify-content: space-between;
   size: 32px;
   padding-top: 15px;
   padding-left: 25px;
   padding-right: 10px;
   font-size: x-large;
-  font-family: ‘Oleo Script’, cursive;
+  font-family: 'Oleo Script', cursive;
   width: 100px;
 }
 
 #cartCounter p {
-  float: right;
-  size: 32px;
-  padding-top: 15px;
-  padding-left: 25px;
-  padding-right: 10px;
-  font-size: x-large;  
+  margin-right: 50px;
+  padding-top: 10px;
+  font-size: x-large;
   font-family: 'Oleo Script', cursive;
-  width: 100px;
+  /* width: 100px; */
 }
