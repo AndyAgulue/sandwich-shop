@@ -218,6 +218,11 @@ footer ul li {
 #emailLink:hover {
   color: antiquewhite;
 }
+h2 {
+  font-family: 'Oleo Script', cursive;
+  font-size: xx-large;
+  font-weight: bold;
+}
 
 h3 {
   font-family: 'Oleo Script', cursive;
@@ -239,11 +244,37 @@ legend {
   font-weight: bold;
   padding-bottom: 25px;
 }
-#cartContents {
+/* #cartContents  {
+  justify-content: center;
   text-align: center;
   font-family: 'Raleway', sans-serif;
   font-size: large;
   line-height: 1.4em;
+} */
+#bottomTable {
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: large;
+  line-height: 1.4em;
+}
+#totalQuantity{
+  padding: 10px;
+}
+.theTeam {
+  padding: 50px;
+}
+#cartCounter p {
+  float: right;
+  size: 32px;
+  padding-top: 15px;
+  padding-left: 25px;
+  padding-right: 10px;
+  font-size: x-large;
+  font-family: ‘Oleo Script’, cursive;
+  width: 100px;
 }
 
 #cartCounter p {
