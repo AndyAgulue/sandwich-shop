@@ -28,7 +28,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-left: 90px;
+  padding-left: 250px;
   
 }
 #logo {
@@ -244,4 +244,15 @@ legend {
   font-family: 'Raleway', sans-serif;
   font-size: large;
   line-height: 1.4em;
+}
+
+#cartCounter p {
+  float: right;
+  size: 32px;
+  padding-top: 15px;
+  padding-left: 25px;
+  padding-right: 10px;
+  font-size: x-large;  
+  font-family: 'Oleo Script', cursive;
+  width: 100px;
 }

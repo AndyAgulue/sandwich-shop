@@ -240,13 +240,13 @@ function showCart() {
 }
 showCart();
 
-function removeItemFromCart(event){
-  if (event.target.classList.contains('remover')){
-    cart.removeItem(parseInt(event.target.id));
-    cart.saveToLocalStorage();
-    renderCart();
-  }
-}
+// function removeItemFromCart(event){
+//   if (event.target.classList.contains('remover')){
+//     cart.removeItem(parseInt(event.target.id));
+//     cart.saveToLocalStorage();
+//     renderCart();
+//   }
+// }
 renderCart();
 
 var cart = new Cart([]);
@@ -272,38 +272,47 @@ function handleSubmit(event) {
   var price = 0;
   var itemSelected = select.options[select.selectedIndex].value;
   var quantitySelected = quantity.value;
+  console.log(quantitySelected, itemSelected);
   for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
     if (itemSelected === SandwichMenu.allSandwichMenu[i].name) {
-      price = SandwichMenu.allSandwichMenu[i].price;
-      console.log(price);
+      // console.log(SandwichMenu.allSandwichMenu[i], 'for loop');
+      if (quantitySelected === '0') {
+        alert('Please select a Quantity');
+      }
+      else {
+        price = SandwichMenu.allSandwichMenu[i].price;
+        console.log(price);
+        addSelectedItemToCart(price, itemSelected, quantitySelected);
+        cart.saveToLocalStorage();
+        updateCounter();
+        updateCartPreview(price, itemSelected, quantitySelected);
+      }
     }
   }
-  addSelectedItemToCart(price, itemSelected, quantitySelected);
-  cart.saveToLocalStorage();
-  updateCounter();
-  updateCartPreview(price, itemSelected, quantitySelected);
 }
 
 function addSelectedItemToCart(price, itemSelected, quantitySelected) {
   cart.addItem(price, itemSelected, quantitySelected);
   console.log(cart);
 }
-
+var cartCount = document.getElementById('cartCounter');
+var paraCount = document.createElement('p');
+cartCount.appendChild(paraCount);
 
 function updateCounter(){
-  var cartCount = document.getElementById('itemCount');
   var cartTotal = 0;
   for (var i=0; i < cart.items.length; i++) {
     var cartQuant = parseInt(cart.items[i].quantity);
     cartTotal += cartQuant;
     console.log(cartTotal);
   }
-  cartCount.textContent = ` ${cartTotal}`;
+
+  paraCount.textContent = ` ${cartTotal}`;
 }
 
 function updateCartPreview(price, itemSelected, quantitySelected) {
   var cartOutput = document.getElementById('cartContents');
-  var cartTotal = document.getElementById('cartTotal');
+  
   // var itemElement = document.createElement('table');
   // var headerRow = document.createElement('tr');
   // var itemHeader = document.createElement('th');
@@ -324,7 +333,7 @@ function updateCartPreview(price, itemSelected, quantitySelected) {
   var itemName = document.createElement('td');
   var itemQuantity = document.createElement('td');
   var itemPrice = document.createElement('td');
-  var grandTotal = document.createElement('tr');
+  
   itemName.textContent = `${itemSelected}`;
   itemQuantity.textContent =`${quantitySelected}`;
   itemPrice.textContent =`$${totalPrice}`;
@@ -332,17 +341,29 @@ function updateCartPreview(price, itemSelected, quantitySelected) {
   itemRow.appendChild(itemName);
   itemRow.appendChild(itemQuantity);
   itemRow.appendChild(itemPrice);
-  cartTotal.appendChild(grandTotal);
+  
 
   cartOutput.appendChild(itemRow);
-  var grandCartTotal = 0;
-  for (var i = 0; i < CartItem.length; i++) {
-    grandCartTotal += (totalPrice[i]);
+  for (var i = 0; i < Cart.length; i++) {
+    grandCartTotal += totalPrice;
+
   // itemElement.textContent = `${quantitySelected} ${itemSelected} $${totalPrice}`;
   // cartOutput.appendChild(itemElement);
   }
-  grandTotal.textContent = grandCartTotal;
+  orderTotal.textContent = `$${grandCartTotal}`;
 }
-
+var cartTotal = document.getElementById('cartTotal');
+var grandTotal = document.createElement('tr');
+var grandCartTotal = 0;
 var menuForm = document.getElementById('menuItem');
+var emptyCell = document.createElement('td');
+var emptyCell2 = document.createElement('td');
+var orderTotal = document.createElement('td');
+emptyCell.textContent = 'Cart Total';
+grandTotal.appendChild(emptyCell);
+grandTotal.appendChild(emptyCell2);
+grandTotal.appendChild(orderTotal);
+cartTotal.appendChild(grandTotal);
+
+
 menuForm.addEventListener('submit', handleSubmit);
