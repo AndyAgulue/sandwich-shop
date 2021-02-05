@@ -1,7 +1,6 @@
 'use strict';
 
-// To-Do: Create a form input  for menu items. one for quantity the other for notes/requests
-//        Create object for menu items
+
 var select = document.getElementById('sandwich');
 var quantity = document.getElementById('quantity');
 
@@ -15,24 +14,9 @@ function SandwichMenu(name,ingredients, price, itemType) {
 
 SandwichMenu.allSandwichMenu = [];
 
-// Cart.selectedItems = [];
 
 SandwichMenu.prototype.display = function() {
-  // var select = document.getElementById('sandwiches');
-  // var item = document.createElement('ul');
-  // var name = document.createElement('li');
-  // var ingredients = document.createElement('li');
-  // var price = document.createElement('li');
-  // name.textContent = this.name;
-  // ingredients.textContent = this.ingredients;
-  // price.textContent = this.price;
-  // Option.textContent = this.name;
-  // Option.value = this.name;
 
-  // select.appendChild(item);
-  // item.appendChild(name);
-  // item.appendChild(ingredients);
-  // item.appendChild(price);
   for (var i = 0; i < 1; i++) {
     if (this.itemType === 'sandwich') {
       var select = document.getElementById('sandwiches');
@@ -45,7 +29,6 @@ SandwichMenu.prototype.display = function() {
       price.textContent = ('$' + this.price);
       Option.textContent = this.name;
       Option.value = this.name;
-    
       select.appendChild(item);
       item.appendChild(name);
       item.appendChild(ingredients);
@@ -102,16 +85,12 @@ SandwichMenu.prototype.display = function() {
       itemDrinks.appendChild(ingredientsDrinks);
       itemDrinks.appendChild(priceDrinks);
     }
-  
   }
 };
 
 
-// for (var i = 0; i < sandwichNames; i++) {
-//   new SandwichMenu(sandwichNames[i]);
-// }
 
-//Sandwiches
+//Menu Items
 var muffaletta = new SandwichMenu('Mufaletta', 'Mortadella, Salami, Ham, Provolone, Olive Salad', 14, 'sandwich');
 var gruyere = new SandwichMenu('Gruyere & Pear', 'North Beach Oyster Mushrooms, Caramelized Onion, Gruyere, Arugula, Bosc Pear', 13, 'sandwich');
 var banhmi = new SandwichMenu('Banh Mi (Pork or Tofu)', 'Cilantro Aioli, Pickled Daikon and Carrot, Cucumber, Chilis, Herbs', 13, 'sandwich');
@@ -119,7 +98,7 @@ var chicken = new SandwichMenu('Fried Chicken', 'Pimento Cheese, Pickles, Cabbag
 var cheeseSteak = new SandwichMenu('Cheesesteak', 'Jack Mountain Steak, Caramelized Onion, Sweet Pepper and Garlic Relish, Mornay Sauce', 16, 'sandwich');
 var pork = new SandwichMenu('Roast Pork Sanguche', 'Aji Amarillo, Cortido, Radish, Crema', 14, 'sandwich');
 var poboy = new SandwichMenu('Fried Prawn Po\'Boy', 'Remoulade, Lettuce, Tomato, Bacon', 15, 'sandwich');
-var mixed = new SandwichMenu('Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', 84, 'salad');
+var mixed = new SandwichMenu('Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', 8, 'salad');
 var mixedKale = new SandwichMenu('Kale and Mixed Greens', 'Lemon Tahini Dressing, Radish, Seeds', 8, 'salad');
 var smallCaesar = new SandwichMenu('Small Kale Caesar', 'Anchovy, Parmesan, Lemon, Bread Crumbs', 8, 'salad');
 var caesar = new SandwichMenu('Kale Caesar', 'Anchovy, Parmesan, Lemon, Bread Crumbs', 12, 'salad');
@@ -161,26 +140,22 @@ topochico.display();
 coffee.display();
 tea.display();
 
-// Cart constructor
+
 // Creating a new cart and adding and removing items from cart
 var Cart = function(items) {
   this.items = items;
-  // Cart.selectedItems.push(this);
 };
 
 Cart.prototype.addItem = function(price, name, quantity) {
   var cartItem = new CartItem(price, name, quantity);
   console.log(cartItem);
   this.items.push(cartItem);
-
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   console.log(this.items);
   var cartString = JSON.stringify(this.items);
   localStorage.setItem('cart', cartString);
-  // localStorage.setItem('cart', JSON.stringify(this.price));
-  // localStorage.setItem('cart', JSON.stringify(this.name));
 };
 
 Cart.prototype.removeItem = function() {
@@ -194,15 +169,11 @@ var CartItem = function(price, name, quantity) {
 };
 
 
-// var table = document.getElementById('cart');
-// table.addEventListener('click', removeItemFromCart);
 var cart;
 
 function loadCart() {
   var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   cart = new Cart(cartItems);
-  // if (isNaN(input.value) || input.value <= 0) {
-  //   input.value = 1;
 }
 
 function renderCart() {
@@ -240,13 +211,6 @@ function showCart() {
 }
 showCart();
 
-// function removeItemFromCart(event){
-//   if (event.target.classList.contains('remover')){
-//     cart.removeItem(parseInt(event.target.id));
-//     cart.saveToLocalStorage();
-//     renderCart();
-//   }
-// }
 renderCart();
 
 var cart = new Cart([]);
@@ -254,7 +218,6 @@ var selectElement = document.getElementById('sandwich');
 
 function populateForm() {
   for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
-  //console.log(i);
     var elem = document.createElement('option');
     var option = SandwichMenu.allSandwichMenu[i].name;
     elem.textContent = option;
@@ -266,16 +229,12 @@ populateForm();
 
 function handleSubmit(event) {
   event.preventDefault();
-  //assign a variable to selected item (quantity and name)
-  //loop through array of products and fine one that matches name
-  //grab price off match
   var price = 0;
   var itemSelected = select.options[select.selectedIndex].value;
   var quantitySelected = quantity.value;
   console.log(quantitySelected, itemSelected);
   for (var i = 0; i < SandwichMenu.allSandwichMenu.length; i++) {
     if (itemSelected === SandwichMenu.allSandwichMenu[i].name) {
-      // console.log(SandwichMenu.allSandwichMenu[i], 'for loop');
       if (quantitySelected === '0') {
         alert('Please select a Quantity');
       }
@@ -312,43 +271,22 @@ function updateCounter(){
 
 function updateCartPreview(price, itemSelected, quantitySelected) {
   var cartOutput = document.getElementById('cartContents');
-  
-  // var itemElement = document.createElement('table');
-  // var headerRow = document.createElement('tr');
-  // var itemHeader = document.createElement('th');
-  // var quantityHeader = document.createElement('th');
-  // var priceHeader = document.createElement('th');
-
-  // itemHeader.textContent= 'Item';
-  // quantityHeader.textContent= 'Quantity';
-  // priceHeader.textContent= 'Total';
-  // itemElement.appendChild(headerRow);
-  // headerRow.appendChild(itemHeader);
-  // headerRow.appendChild(quantityHeader);
-  // headerRow.appendChild(priceHeader);
-  
   var totalPrice = (price * quantitySelected);
   var itemRow = document.createElement('tr');
-  // itemElement.appendChild(itemRow);
   var itemName = document.createElement('td');
   var itemQuantity = document.createElement('td');
-  var itemPrice = document.createElement('td');
-  
+  var itemPrice = document.createElement('td');  
   itemName.textContent = `${itemSelected}`;
   itemQuantity.textContent =`${quantitySelected}`;
   itemPrice.textContent =`$${totalPrice}`;
-  // grandTotal.textContent=
+
   itemRow.appendChild(itemName);
   itemRow.appendChild(itemQuantity);
   itemRow.appendChild(itemPrice);
-  
 
   cartOutput.appendChild(itemRow);
   for (var i = 0; i < Cart.length; i++) {
     grandCartTotal += totalPrice;
-
-  // itemElement.textContent = `${quantitySelected} ${itemSelected} $${totalPrice}`;
-  // cartOutput.appendChild(itemElement);
   }
   orderTotal.textContent = `$${grandCartTotal}`;
 }

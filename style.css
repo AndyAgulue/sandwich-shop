@@ -30,11 +30,29 @@ header {
   padding-right: 10px;
 }
 #navSection {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: center;
   /* padding-left: 250px; */
-  margin-left: 725px;
+  /* margin: auto; */ 
+  float: none;
+  position: absolute;
+  /* margin-top: 50px; */
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#navItems li {
+  text-decoration: none;
+  list-style: none;
+  flex-direction: row;
+  margin: auto;
+  size: 32px;
+  display: inline;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: x-large;  
+  font-family: 'Oleo Script', cursive;
 }
 #logo {
   position: relative;
@@ -52,18 +70,6 @@ main {
   background-color: rgb(245,245,245);
 }
 
-#navItems li {
-  text-decoration: none;
-  list-style: none;
-  flex-direction: row;
-  margin: auto;
-  size: 32px;
-  display: inline;
-  padding-left: 25px;
-  padding-right: 25px;
-  font-size: x-large;  
-  font-family: 'Oleo Script', cursive;
-}
 ul li a {
   text-decoration: none;
   list-style: none;
@@ -290,4 +296,21 @@ legend {
   font-size: x-large;
   font-family: 'Oleo Script', cursive;
   /* width: 100px; */
+}
+
+#imageList {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* width: 800px; */
+}
+#imageList img {
+  padding: 10px;
+}
+#mediaHead {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0px;
+  font-size: 64px;
 }
