@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <!-- HTML and CSS still needs work to display correctly on smaller devices -->
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,18 +12,21 @@
   </head>
   <body>
     <header>
-      <div>
         <h1>Voyager Sandwiches & Seafood</h1>
-        <!-- <a href="index.html" ><img src="assets/Voyager_Logo.jpg" id="logo"></a> -->
-        <section id="navSection">
-          <ul id="navItems">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="order-page.html">Menu</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>Cart<span id="itemCount"></span></li>
-
-          </ul>
+        <div id="headerStuff">
+          <section id="navSection">
+            <ul id="navItems">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="order-page.html">Menu</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="media.html">Media</a></li>
+            </ul>
+          </section>
+          <section id="cartCounter">
+            <a href="#cartContents"><img id="itemCount" src="assets/shopping-cart.png">
+            </a>
         </section>
+      </div>
       </header>
   <section>
     <div class="container">
@@ -31,43 +35,82 @@
   </section>
   <!-- <select id="select">
   </select> -->
-  <section id="sandwiches"></section>
+
+  <!-- <section id="sandwiches"></section> -->
+
+  <div id="menu">
+      <section id="sandwiches"><h3>Sandwiches</h3></section>
+      <section id="salads"><h3>Salads</h3></section>
+      <section id="kids"><h3>Kids</h3></section>
+      <section id="drinks"><h3>Drinks</h3></section>
+  </div>
+
   <section>
     <form id='menuItem'>
       <fieldset>
-        <legend>Sandwhiches</legend>
+        <legend>Order Here</legend>
         <label>
           <span>Item</span>
           <select name="" id="sandwich"></select>
         </label>
         <label>
           <span>Quantity</span>
-          <input id="quantity" type="number"/>
+          <input id="quantity" type="number" min="0"/>
         </label>
         <label>
-          <span>Price</span>
-          <input id="price" type="number"/>
+          <!-- <span>Price</span>
+          <input id="price" type="number"/> -->
         </label>
-        <input type="submit" value="Add to cart"/>
+        <input id="submitButton" type="submit" value="Add to cart"/>
       </fieldset>
       </form>
-      <div id="cartContents"></div>
-  </section>
+      <div id="bottomTable">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th id="totalQuantity">Quantity</th>
+              <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="cartContents"></tbody>
+        <tfoot id="cartTotal"></tfoot>
+      </table>
+      </div>
+    </section>
+    
    
     
-  <section id="salads"></section>
+  <!-- <section id="salads"></section>
 
   <section id="kids"></section>
   
-  <section id="drinks"></section>
+  <section id="drinks"></section> -->
 
 
 
   <footer>
-
-  </footer> 
-
+    <ul id="contactInfo">
+      <li>Voyager</li>
+      <li>109 North Beach Rd A2</li>
+      <li>Eastsound, WA 98245</li>
+      <li><a href="tel:360-298-9261">360-298-9261</a></li>
+      <li><a id="emailLink" href="mailto:voyagerorcas@gmail.com">Email Us</a></li>      
+      <li>&copy 2021 Voyager</li>        
+    </ul>
+    <ul>
+      <li id="fb">
+        <a href="https://www.facebook.com/pages/category/Sandwich-Shop/Voyager-Sandwiches-Seafood-101899497922047/">
+          <img src="./assets/facebook-white.png"></img>
+        </a>
+      </li>
+      <li id="insta" >
+        <a href="https://www.instagram.com/voyager_orcas/?hl=en">
+          <img src="./assets/insta-white.png" ></img>
+        </a>
+      </li>
+    </ul>
+  </footer>
   <script src="catalog.js" ></script>
-
 </body>
 </html>
